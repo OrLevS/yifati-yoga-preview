@@ -1,0 +1,7 @@
+# Work files that should not be published
+.impeccable/
+.claude/
+_versions/
+PRODUCT.md
+DESIGN.md
+assets/brush-*.png
