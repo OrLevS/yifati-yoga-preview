@@ -23,8 +23,7 @@
     var update = function () {
       parallaxEls.forEach(function (el) {
         var speed = parseFloat(el.getAttribute('data-parallax')) || .2;
-        var rect = el.parentElement.getBoundingClientRect();
-        el.style.transform = 'translateY(' + (-rect.top * speed) + 'px)';
+        el.style.transform = 'translateY(' + (window.scrollY * speed) + 'px)';
       });
       ticking = false;
     };
