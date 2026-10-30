@@ -369,3 +369,17 @@ html{scroll-padding-top:96px}
 }
 
 .social{flex-wrap:wrap}
+
+/* Contact: soft blush field instead of dark */
+.contact{background:var(--blush-200)}
+.contact .section-title{color:var(--rose-700)}
+.contact-close{color:var(--ink-900)}
+.contact-lead{color:var(--ink-600);opacity:1}
+.thanks{color:var(--ink-900)}
+.form :focus-visible{outline-color:var(--rose-600)}
+.social a{color:var(--rose-700)}
+.social a:hover{color:var(--ink-900)}
+.footer{background:var(--blush-200)}
+
+/* The contact field is now blush, so the block above it stays on the page ground */
+.youtube.band{background:none}
