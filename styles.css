@@ -292,7 +292,7 @@ a.card{color:inherit;display:flex;flex-direction:column;align-items:center;gap:2
 
 /* Larger header type */
 .nav-inner{max-width:1320px}
-.brand img{width:66px;height:66px}
+.brand img{width:60px;height:60px}
 .brand span{font-size:28px}
 .nav-links{font-size:21px;gap:28px}
 .nav-cta{font-size:23px;padding:8px 24px}
@@ -304,3 +304,12 @@ a.card{color:inherit;display:flex;flex-direction:column;align-items:center;gap:2
   .brand span{font-size:22px}
   .nav-cta{font-size:19px;padding:6px 16px}
 }
+
+/* Sticky header: the wrapper must not be a scroll container */
+.page{overflow-x:clip}
+html{scroll-padding-top:96px}
+
+/* Intro paragraphs */
+.intro{max-width:720px}
+.intro p{margin:0 0 1em}
+.intro p:last-child{margin-bottom:0}
