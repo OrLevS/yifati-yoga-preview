@@ -367,3 +367,5 @@ html{scroll-padding-top:96px}
   .retreat-dates li + li{border-inline-start:none;border-top:1px solid rgba(170,112,132,.3)}
   .retreat-dates a{flex-direction:row;justify-content:space-between;align-items:baseline;padding:12px 4px}
 }
+
+.social{flex-wrap:wrap}
