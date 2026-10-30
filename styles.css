@@ -426,3 +426,11 @@ html{scroll-padding-top:96px}
   .rp-body{padding:32px 16px 56px}
   .rp-list{grid-template-columns:1fr}
 }
+
+/* Sent state: the form disappears and a clear thank-you takes its place */
+[hidden]{display:none!important}
+.thanks{background:var(--cream-0);border-radius:var(--radius-lg);padding:44px 28px;font-size:22px;color:var(--ink-900)}
+.thanks:focus{outline:none}
+.thanks p{margin:0}
+.thanks-title{font-family:var(--font-accent);font-size:clamp(38px,4.4vw,56px);line-height:1.1;color:var(--rose-700);margin-bottom:10px!important}
+.thanks-again{display:inline-block;margin-top:22px;background:none;border:none;padding:0;cursor:pointer;font-family:var(--font-body)}

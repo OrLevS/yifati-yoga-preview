@@ -9,8 +9,8 @@
 <link rel="icon" href="assets/logo-full.png">
 <link rel="preload" href="assets/fonts/SKFRakefet-Regular.otf" as="font" type="font/otf" crossorigin>
 <link rel="preload" href="assets/images/hero-beach.jpg" as="image">
-<link rel="stylesheet" href="styles.css?v=1793354957">
-<script src="main.js?v=1793354957" defer></script>
+<link rel="stylesheet" href="styles.css?v=1793355464">
+<script src="main.js?v=1793355464" defer></script>
 </head>
 <body>
 <div class="page">
@@ -176,7 +176,11 @@
         <p class="contact-close">לקחת כמה ימים, ליהנות בטבע, להכיר, ללמוד, להיות ביחד, ולחזור הביתה עם קצת יותר ממה שהגענו איתו.<br>מחכה לכם ❤️</p>
         <p class="contact-lead">השאירו פרטים ואחזור אליכם בהקדם</p>
 
-        <p class="thanks" id="thanks" role="status" hidden>תודה! קיבלתי את הפרטים ואחזור אליכם בקרוב 🙏</p>
+        <div class="thanks" id="thanks" role="status" tabindex="-1" hidden>
+          <p class="thanks-title">תודה!</p>
+          <p>קיבלתי את הפרטים ואחזור אליכם בקרוב 🙏</p>
+          <button class="hero-link thanks-again" id="thanks-again" type="button">לשלוח פנייה נוספת</button>
+        </div>
 
         <form class="form" id="contact-form">
           <label class="sr-only" for="f-name">שם</label>

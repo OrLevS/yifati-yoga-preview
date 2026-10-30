@@ -72,11 +72,22 @@
       mobileCta.style.visibility = entries[0].isIntersecting ? 'hidden' : '';
     }).observe(contact);
   }
+  var thanksAgain = document.getElementById('thanks-again');
+  if (thanksAgain) {
+    thanksAgain.addEventListener('click', function () {
+      thanks.hidden = true;
+      form.hidden = false;
+      form.querySelector('input').focus();
+    });
+  }
   if (form) {
     form.addEventListener('submit', function (e) {
       e.preventDefault();
+      form.reset();
       form.hidden = true;
       thanks.hidden = false;
+      thanks.focus({ preventScroll: true });
+      thanks.scrollIntoView({ block: 'center', behavior: reduceMotion ? 'auto' : 'smooth' });
     });
   }
 })();
