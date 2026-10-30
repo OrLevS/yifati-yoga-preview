@@ -40,6 +40,30 @@
   document.querySelectorAll('[data-service]').forEach(function (a) {
     a.addEventListener('click', function () { service.value = a.getAttribute('data-service'); });
   });
+  // Testimonials carousel (RTL: moving forward is a negative scrollLeft)
+  var track = document.getElementById('quotes');
+  var carPrev = document.getElementById('car-prev');
+  var carNext = document.getElementById('car-next');
+  if (track && carPrev && carNext) {
+    var syncArrows = function () {
+      var max = track.scrollWidth - track.clientWidth;
+      var pos = Math.abs(track.scrollLeft);
+      carPrev.disabled = pos < 8;
+      carNext.disabled = pos > max - 8;
+    };
+    var step = function (dir) {
+      var card = track.querySelector('.quote');
+      var gap = parseFloat(getComputedStyle(track).columnGap) || 0;
+      track.scrollBy({ left: -dir * (card.offsetWidth + gap), behavior: reduceMotion ? 'auto' : 'smooth' });
+      setTimeout(syncArrows, 500);
+    };
+    carPrev.addEventListener('click', function () { step(-1); });
+    carNext.addEventListener('click', function () { step(1); });
+    track.addEventListener('scroll', syncArrows, { passive: true });
+    window.addEventListener('resize', syncArrows);
+    syncArrows();
+  }
+
   // Hide the floating mobile button once the form is on screen
   var mobileCta = document.querySelector('.mobile-cta');
   var contact = document.getElementById('contact');

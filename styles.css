@@ -334,3 +334,36 @@ html{scroll-padding-top:96px}
 .rd-date{font-family:var(--font-accent);font-size:clamp(26px,2.6vw,34px);line-height:1.1;color:var(--rose-700)}
 .rd-place{font-size:19px;color:var(--ink-900)}
 @media (max-width:900px){.retreat-dates{grid-template-columns:repeat(2,1fr)}.next-retreat{padding:32px 20px}}
+
+/* Testimonials carousel: one row with arrows */
+.carousel{display:flex;align-items:center;gap:16px;max-width:1240px;margin:0 auto}
+.testimonials .quotes{flex:1;min-width:0;display:flex;flex-wrap:nowrap;justify-content:flex-start;columns:auto;gap:20px;max-width:none;align-items:stretch;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;padding:0}
+.testimonials .quotes::-webkit-scrollbar{display:none}
+.testimonials .quote{display:block;flex:0 0 calc((100% - 40px) / 3);width:auto;margin:0;scroll-snap-align:start}
+.car-btn{flex:0 0 auto;width:48px;height:48px;display:grid;place-items:center;border:none;border-radius:50%;background:var(--cream-0);color:var(--rose-700);cursor:pointer;transition:background-color .2s ease,color .2s ease,opacity .2s ease}
+.car-btn svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.car-btn:hover:not(:disabled){background:var(--rose-700);color:var(--cream-0)}
+.car-btn:disabled{opacity:.4;cursor:default}
+.car-btn:focus-visible{outline:2px solid var(--rose-600);outline-offset:2px}
+.testimonials .quotes:focus-visible{outline:2px solid var(--rose-600);outline-offset:-2px}
+@media (max-width:1000px){.testimonials .quote{flex-basis:calc((100% - 20px) / 2)}}
+@media (max-width:720px){
+  .carousel{flex-wrap:wrap;justify-content:center}
+  .testimonials .quotes{order:-1;flex:0 0 100%}
+  .testimonials .quote{flex-basis:88%}
+}
+
+/* Retreat dates: quiet row instead of boxes */
+.next-retreat{background:none;padding:24px 0 0;margin-top:40px}
+.retreat-dates{gap:0;margin-bottom:28px}
+.retreat-dates li + li{border-inline-start:1px solid rgba(170,112,132,.3)}
+.retreat-dates a{background:none;border-radius:0;padding:8px 12px}
+.retreat-dates a:hover{background:none}
+.retreat-dates a:hover .rd-date{color:var(--ink-900)}
+.rd-date{transition:color .2s ease}
+@media (max-width:900px){
+  .next-retreat{padding:16px 0 0}
+  .retreat-dates{grid-template-columns:1fr;max-width:340px;margin-inline:auto}
+  .retreat-dates li + li{border-inline-start:none;border-top:1px solid rgba(170,112,132,.3)}
+  .retreat-dates a{flex-direction:row;justify-content:space-between;align-items:baseline;padding:12px 4px}
+}
