@@ -313,3 +313,11 @@ html{scroll-padding-top:96px}
 .intro{max-width:720px}
 .intro p{margin:0 0 1em}
 .intro p:last-child{margin-bottom:0}
+
+/* Longer about text */
+.about-inner{align-items:flex-start}
+.about-text{max-width:640px}
+.about-text h2{font-size:clamp(30px,3vw,40px)}
+.about-text p{margin-bottom:1.1em}
+.about-photo{position:sticky;top:110px;width:320px;height:440px}
+@media (max-width:720px){.about-photo{position:static;width:100%;height:400px}}
