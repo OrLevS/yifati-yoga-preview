@@ -209,6 +209,7 @@
       var parts = l.split('|');
       return '<li><span dir="ltr">' + esc((parts[0] || '').trim()) + '</span><span>' + rich((parts.slice(1).join('|') || '').trim()) + '</span></li>';
     }).join('');
+    var gal = (r.gallery || []).map(imgSrc).filter(Boolean).slice(0, 8);
     var myFaq = (faq || []).filter(function (f) { return !f.place || f.place === r.place; });
     var img = imgSrc(r.image);
     return '<section class="rp-hero">' + (img ? '<img src="' + esc(img) + '" alt="">' : '') +
@@ -218,6 +219,9 @@
       '<section class="rp-lead">' + paras(r.lead) + '</section>' +
       (r.program ? '<section class="rp-block"><h2 class="rp-h">מה בתוכנית?</h2><ul class="rp-list">' + list(r.program) + '</ul></section>' : '') +
       (sched ? '<section class="rp-block"><h2 class="rp-h">לו״ז</h2><ul class="rp-schedule">' + sched + '</ul></section>' : '') +
+      (gal.length ? '<section class="rp-block"><h2 class="rp-h">רגעים מהמקום</h2><div class="rp-gallery">' + gal.map(function (g, i) {
+        return '<button type="button" class="rp-shot" data-full="' + esc(g) + '" aria-label="להגדלת תמונה ' + (i + 1) + '"><img src="' + esc(g) + '" alt="" loading="lazy"></button>';
+      }).join('') + '</div></section>' : '') +
       (r.who ? '<section class="rp-block"><h2 class="rp-h">למי זה מתאים?</h2>' + paras(r.who) + '</section>' : '') +
       (r.price || r.includes ? '<section class="rp-block rp-price"><h2 class="rp-h">פרטים טכניים</h2>' +
         (r.price ? '<p class="rp-amount">' + esc(r.price) + ' <span>' + esc(r.priceNote) + '</span></p>' : '') +
@@ -309,6 +313,23 @@
     if (!el) { el = document.createElement('script'); el.type = 'application/ld+json'; el.id = 'events-ld'; document.head.appendChild(el); }
     el.textContent = JSON.stringify(list);
   }
+
+  // Retreat gallery: click a photo to see it large
+  document.addEventListener('click', function (e) {
+    var shot = e.target.closest && e.target.closest('.rp-shot');
+    if (!shot) return;
+    var dlg = document.getElementById('lightbox');
+    if (!dlg) {
+      dlg = document.createElement('dialog');
+      dlg.id = 'lightbox';
+      dlg.className = 'lightbox';
+      dlg.innerHTML = '<button type="button" class="lightbox-close" aria-label="סגירה">×</button><img alt="">';
+      dlg.addEventListener('click', function (ev) { if (ev.target === dlg || ev.target.classList.contains('lightbox-close')) dlg.close(); });
+      document.body.appendChild(dlg);
+    }
+    dlg.querySelector('img').src = shot.getAttribute('data-full');
+    if (dlg.showModal) dlg.showModal(); else dlg.setAttribute('open', '');
+  });
 
   function showMissing() {
     var main = document.querySelector('main');

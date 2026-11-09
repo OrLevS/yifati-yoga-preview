@@ -463,3 +463,16 @@ html{scroll-padding-top:96px}
   .social{font-size:18px}
   .footer{font-size:15px}
 }
+
+/* Retreat page gallery */
+.rp-gallery{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+.rp-shot{padding:0;border:none;background:none;cursor:zoom-in;border-radius:14px;overflow:hidden;aspect-ratio:1}
+.rp-shot img{width:100%;height:100%;object-fit:cover;transition:transform .5s ease}
+@media (hover:hover) and (pointer:fine){.rp-shot:hover img{transform:scale(1.04)}}
+.rp-shot:focus-visible{outline:2px solid var(--rose-600);outline-offset:2px}
+.lightbox{border:none;padding:0;background:transparent;max-width:min(92vw,1100px);max-height:90vh}
+.lightbox::backdrop{background:rgba(36,31,34,.85)}
+.lightbox img{display:block;max-width:100%;max-height:90vh;border-radius:12px}
+.lightbox-close{position:absolute;top:8px;left:8px;width:40px;height:40px;border:none;border-radius:50%;background:var(--cream-0);color:var(--ink-900);font-size:26px;line-height:1;cursor:pointer}
+@media (max-width:720px){.rp-gallery{grid-template-columns:repeat(2,1fr)}}
+@media (prefers-reduced-motion:reduce){.rp-shot img{transition:none}}
