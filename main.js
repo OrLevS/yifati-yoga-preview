@@ -1,7 +1,7 @@
 (function () {
   /* Content and form backend: the Google Apps Script web app bound to Yifat's sheet.
      Empty until deployed; the page then keeps the content written in the HTML. */
-  var DATA_URL = '';
+  var DATA_URL = 'https://script.google.com/macros/s/AKfycby000LPSACokhs8qxtmqugk557khxS0Can-sSEBk_qiaZRcLSPS_4idMoSGfSrWT8Z_/exec';
   var WHATSAPP_GROUP = 'https://chat.whatsapp.com/K7wKS0aRaVA459lflpOVRU';
 
   var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
