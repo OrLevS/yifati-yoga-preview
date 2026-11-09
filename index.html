@@ -9,8 +9,8 @@
 <link rel="icon" href="assets/logo-full.png">
 <link rel="preload" href="assets/fonts/SKFRakefet-Regular.otf" as="font" type="font/otf" crossorigin>
 <link rel="preload" href="assets/images/hero-beach.jpg" as="image">
-<link rel="stylesheet" href="styles.css?v=1793355464">
-<script src="main.js?v=1793355464" defer></script>
+<link rel="stylesheet" href="styles.css?v=1794236966">
+<script src="main.js?v=1794236966" defer></script>
 </head>
 <body>
 <div class="page">
@@ -36,12 +36,12 @@
   <main>
     <section class="hero">
       <div class="hero-media" data-parallax=".25">
-        <img src="assets/images/hero-beach.jpg" alt="יפעת עומדת בחוף הים, ידיה על הלב" fetchpriority="high">
+        <img src="assets/images/hero-beach.jpg" alt="יפעת עומדת בחוף הים, ידיה על הלב" fetchpriority="high" data-img="hero">
       </div>
       <div class="hero-shade"></div>
       <div class="hero-copy">
-        <h1>שינויים מתחילים<br>בצעדים קטנים</h1>
-        <p class="hero-sub">יוגה, מדיטציה וריטריטים בארץ, בסיני ובחו״ל, עם יפעת</p>
+        <h1 data-text="hero_title">שינויים מתחילים<br>בצעדים קטנים</h1>
+        <p class="hero-sub" data-text="hero_sub">יוגה, מדיטציה וריטריטים בארץ, בסיני ובחו״ל, עם יפעת</p>
         <div class="hero-actions">
           <a class="btn btn-dark" href="#retreats">לשמוע על הריטריט הבא</a>
           <a class="hero-link" href="#offerings">שיעורים וטיפולים</a>
@@ -50,8 +50,8 @@
     </section>
 
     <section id="offerings" class="offerings" data-reveal>
-      <h2 class="section-title">היי, אני יפעת</h2>
-      <div class="intro">
+      <h2 class="section-title" data-text="intro_title">היי, אני יפעת</h2>
+      <div class="intro" data-paras="intro">
         <p>כל החיים רציתי לחבר בין אנשים, אז יצרתי מרחבים שבהם אפשר <span class="hl">לפגוש, לנשום, לזוז ולהיות ביחד</span>.</p>
         <p>היוגה נכנסה לחיים שלי לפני יותר מ־20 שנה, ומאז היא מלווה אותי בכל מיני דרכים. כבר 14 שנה שאני מלמדת, ובעשור האחרון אני גם לוקחת אנשים איתי לריטריטים בארץ, בסיני ובחו״ל.</p>
         <p>אני מאמינה שכולנו רוצים לחיות חיים טובים יותר. החיים מזמנים לנו כל מיני חוויות ושינויים, ולא תמיד אנחנו יודעים איך לגשת אליהם. עם השנים גיליתי שיש כלים שיכולים לעזור לנו בדרך, כמו יוגה, מדיטציה, מיינדפולנס, מגע, שיחה ולפעמים פשוט להיות ביחד.</p>
@@ -66,13 +66,15 @@
 
     <section id="about" class="about band" data-reveal>
       <div class="about-inner">
-        <img class="about-photo" src="assets/images/about-portrait.jpg" alt="יפעת מחייכת" loading="lazy" width="280" height="360">
+        <img class="about-photo" data-img="about" src="assets/images/about-portrait.jpg" alt="יפעת מחייכת" loading="lazy" width="280" height="360">
         <div class="about-text">
-          <h2>עדיין לומדת, עדיין שואלת</h2>
+          <h2 data-text="about_title">עדיין לומדת, עדיין שואלת</h2>
+          <div data-paras="about">
           <p>הדרך שלי התחילה הרבה לפני שפגשתי את היוגה, מתוך סקרנות ושאלות על החיים. איך נכון לי לחיות? מה באמת חשוב? איך אפשר לחיות חיים טובים יותר? ומה אלו החיים?</p>
           <p>תמיד אהבתי ללמוד ובמשך תקופה עבדתי בהייטק, אבל עם הזמן הרגשתי שמשהו חסר לי, שהעבודה לא נותנת לי את תחושת המשמעות והסיפוק שחיפשתי. החלטתי לעזוב ולתת יותר מקום לדברים שבאמת מסקרנים וממלאים אותי. לאורך השנים מצאתי את עצמי נמשכת ליוגה, לתורות מהמזרח, לקבלה וליהדות, ולעוד כל מיני עולמות שפותחים לי כיווני מחשבה חדשים.</p>
           <p>בשבילי, העולמות האלו הם אבני דרך להבין ולהתמצא קצת יותר מול המציאות.</p>
           <p>עם השנים הבנתי שמה שאני הכי אוהבת בכל מה שאני עושה הוא <span class="hl">המפגש עם אנשים</span>. היוגה, המדיטציה וכל הדברים שאני לומדת הם חלק ממה שאני מביאה איתי, אבל בסופו של דבר, הכי מעניין אותי מה שקורה כשאנחנו נפגשים. השיחות שמתפתחות, הדברים שאנשים מביאים מעצמם, הרגעים שבהם מישהו אומר משהו ופתאום נפתח כיוון שלא חשבנו עליו. אני לומדת מהמפגשים האלה לא פחות ממה שאני מביאה אליהם, וזה מה שגורם לי להמשיך לעשות את מה שאני עושה.</p>
+          </div>
         </div>
       </div>
     </section>
@@ -80,16 +82,18 @@
     <section id="retreats" class="retreats" data-reveal>
       <div class="retreats-inner">
         <div class="retreats-text">
-          <h2 class="section-title">לצאת רגע מהשגרה</h2>
+          <h2 class="section-title" data-text="retreats_title">לצאת רגע מהשגרה</h2>
+          <div data-paras="retreats">
           <p>ריטריטים הם רגע בשביל לקחת כמה ימים לעצמכם, לצאת קצת מהשגרה, <span class="hl">להאט את הקצב</span>, לזוז, לנשום, ללמוד, ליהנות ובעיקר להיות ביחד.</p>
           <p>הדבר שאני הכי אוהבת במפגשים הוא האנשים שמגיעים אליהם. כל אחד מגיע ממקום אחר בחיים, עם הסיפור שלו. יש כאלה שמגיעים לבד, יש כאלה שבאים ביחד. כל אחד מביא איתו משהו אחר, כמו <span class="hl">חתיכה בפאזל</span>, ולאט לאט, דרך השיחות, החוויות והרגעים המשותפים, החתיכות מתחילות להתחבר ונוצרת תמונה שאף אחד מאיתנו לא היה יכול ליצור לבד.</p>
           <p>את הריטריטים אני בוחרת לקיים במקומות שאני הכי אוהבת בעולם, כאלה שאני תמיד שמחה לחזור אליהם. אני אוהבת לקחת אנשים למקומות האלה ולחלוק איתם את מה שאני כל כך אוהבת בהם.</p>
+          </div>
         </div>
-        <img class="retreats-photo" src="assets/images/class-group.jpg" alt="קבוצה מתרגלת כלב מביט מטה על שטיחים צבעוניים במדבר, יפעת עוברת ביניהם" loading="lazy">
+        <img class="retreats-photo" data-img="retreats" src="assets/images/class-group.jpg" alt="קבוצה מתרגלת כלב מביט מטה על שטיחים צבעוניים במדבר, יפעת עוברת ביניהם" loading="lazy">
       </div>
       <div class="next-retreat">
         <h3>הריטריטים הקרובים</h3>
-        <ul class="retreat-dates">
+        <ul class="retreat-dates" id="retreat-dates">
           <li><a href="retreat-sdot-yam-14-11.html"><span class="rd-date" dir="ltr">14.11</span><span class="rd-place">שדות ים</span></a></li>
           <li><a href="retreat-sinai-18-21-11.html"><span class="rd-date" dir="ltr">18-21.11</span><span class="rd-place">סיני</span></a></li>
           <li><a href="retreat-sinai-16-19-12.html"><span class="rd-date" dir="ltr">16-19.12</span><span class="rd-place">סיני</span></a></li>
@@ -135,14 +139,14 @@
 
     <section class="together" data-reveal>
       <div class="together-inner">
-        <img class="together-photo" src="assets/images/hands.jpg" alt="ידיים שלובות במעגל" loading="lazy">
-        <p>בתוך כל הדברים שממלאים לנו את הימים, לא תמיד יוצא לנו לעצור ו<span class="hl">פשוט להיות ביחד</span>. ואני חושבת שיש בזה משהו שאנחנו מאוד צריכים. זמן להכיר, לדבר, לעשות דברים יחד וליהנות מהמפגש עם אנשים אחרים.</p>
+        <img class="together-photo" data-img="together" src="assets/images/hands.jpg" alt="ידיים שלובות במעגל" loading="lazy">
+        <p data-text="together">בתוך כל הדברים שממלאים לנו את הימים, לא תמיד יוצא לנו לעצור ו<span class="hl">פשוט להיות ביחד</span>. ואני חושבת שיש בזה משהו שאנחנו מאוד צריכים. זמן להכיר, לדבר, לעשות דברים יחד וליהנות מהמפגש עם אנשים אחרים.</p>
       </div>
     </section>
 
     <section id="gallery" class="gallery" data-reveal>
       <h2 class="section-title">רגעים מהריטריטים</h2>
-      <div class="gallery-grid">
+      <div class="gallery-grid" id="gallery-grid">
         <img class="g-big" src="assets/images/retreat-meal.jpg" alt="ארוחה משותפת בריטריט, שולחן ארוך ונמוך" loading="lazy">
         <img src="assets/images/retreat-cliff.jpg" alt="מתרגלים יושבים על סלע מול הים בריטריט" loading="lazy">
         <img src="assets/images/touch-adjust.jpg" alt="יפעת מלווה מתרגלת בכפיפה לאחור" loading="lazy">
@@ -166,23 +170,26 @@
             <a class="hero-link" href="https://www.instagram.com/ifatyoga" target="_blank" rel="noopener">לעקוב באינסטגרם</a>
           </div>
         </div>
-        <img class="youtube-thumb" src="assets/images/youtube-seated.jpg" alt="יפעת יושבת בתנוחת יוגה מול הרים" loading="lazy">
+        <img class="youtube-thumb" data-img="youtube" src="assets/images/youtube-seated.jpg" alt="יפעת יושבת בתנוחת יוגה מול הרים" loading="lazy">
       </div>
     </section>
 
     <section id="contact" class="contact" data-reveal>
       <div class="contact-inner">
         <h2 class="section-title">יצירת קשר</h2>
-        <p class="contact-close">לקחת כמה ימים, ליהנות בטבע, להכיר, ללמוד, להיות ביחד, ולחזור הביתה עם קצת יותר ממה שהגענו איתו.<br>מחכה לכם ❤️</p>
+        <p class="contact-close" data-text="contact_close">לקחת כמה ימים, ליהנות בטבע, להכיר, ללמוד, להיות ביחד, ולחזור הביתה עם קצת יותר ממה שהגענו איתו.<br>מחכה לכם ❤️</p>
         <p class="contact-lead">השאירו פרטים ואחזור אליכם בהקדם</p>
 
         <div class="thanks" id="thanks" role="status" tabindex="-1" hidden>
           <p class="thanks-title">תודה!</p>
-          <p>קיבלתי את הפרטים ואחזור אליכם בקרוב 🙏</p>
+          <p data-text="thanks">קיבלתי את הפרטים ואחזור אליכם בקרוב 🙏</p>
+          <p class="thanks-wa">בינתיים מוזמנים להצטרף ל<a href="https://chat.whatsapp.com/K7wKS0aRaVA459lflpOVRU" target="_blank" rel="noopener">קבוצת הווטסאפ השקטה לעדכונים</a></p>
           <button class="hero-link thanks-again" id="thanks-again" type="button">לשלוח פנייה נוספת</button>
         </div>
 
+        <p class="form-error" id="send-error" role="alert" hidden>משהו השתבש בשליחה. אפשר לנסות שוב, או לכתוב ליפעת ישירות בווטסאפ.</p>
         <form class="form" id="contact-form">
+          <div class="hp" aria-hidden="true"><label for="f-website">אתר</label><input id="f-website" name="website" type="text" tabindex="-1" autocomplete="off"></div>
           <label class="sr-only" for="f-name">שם</label>
           <input id="f-name" name="name" type="text" placeholder="שם" autocomplete="name" required>
           <label class="sr-only" for="f-phone">טלפון</label>
@@ -199,7 +206,7 @@
           </select>
           <label class="sr-only" for="f-message">הודעה</label>
           <textarea id="f-message" name="message" placeholder="הודעה חופשית" rows="4"></textarea>
-          <button class="btn btn-dark btn-block" type="submit">לשמוע עוד פרטים</button>
+          <button class="btn btn-dark btn-block" type="submit" id="f-submit">לשמוע עוד פרטים</button>
         </form>
 
         <div class="social">

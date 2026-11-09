@@ -434,3 +434,11 @@ html{scroll-padding-top:96px}
 .thanks p{margin:0}
 .thanks-title{font-family:var(--font-accent);font-size:clamp(38px,4.4vw,56px);line-height:1.1;color:var(--rose-700);margin-bottom:10px!important}
 .thanks-again{display:inline-block;margin-top:22px;background:none;border:none;padding:0;cursor:pointer;font-family:var(--font-body)}
+
+/* Form states */
+.hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+.form-error{color:var(--rose-700);background:var(--cream-0);border-radius:var(--radius-md);padding:12px 16px;margin:0 0 16px}
+.thanks-wa{margin-top:14px!important;font-size:18px}
+.thanks-wa a{color:var(--rose-700);text-decoration:underline;text-underline-offset:.3em}
+#f-submit:disabled{opacity:.7;cursor:progress}
+.rp-loading,.rp-missing{text-align:center;min-height:40vh}
