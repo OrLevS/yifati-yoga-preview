@@ -442,3 +442,6 @@ html{scroll-padding-top:96px}
 .thanks-wa a{color:var(--rose-700);text-decoration:underline;text-underline-offset:.3em}
 #f-submit:disabled{opacity:.7;cursor:progress}
 .rp-loading,.rp-missing{text-align:center;min-height:40vh}
+
+.card-where{margin-top:2px!important;font-size:15px;color:var(--rose-700)}
+.rp-amount span{display:block;margin-top:4px;font-size:17px;line-height:1.5}
