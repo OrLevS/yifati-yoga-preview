@@ -22,7 +22,9 @@
   function paras(s) { return lines(s).map(function (l) { return '<p>' + rich(l) + '</p>'; }).join(''); }
   function list(s) { return lines(s).map(function (l) { return '<li>' + rich(l) + '</li>'; }).join(''); }
   function imgSrc(u) { u = String(u || '').trim(); return /^(https:\/\/|assets\/)/.test(u) ? u : ''; }
-  function retreatHref(id) { return 'retreat.html?r=' + encodeURIComponent(id); }
+  // Retreats that have their own static page (better link previews and search results); the rest use retreat.html?r=
+  var STATIC_PAGES = ['sdot-yam-14-11', 'sinai-18-21-11', 'sinai-16-19-12', 'sdot-yam-26-12'];
+  function retreatHref(id) { return STATIC_PAGES.indexOf(id) >= 0 ? 'retreat-' + id + '.html' : 'retreat.html?r=' + encodeURIComponent(id); }
   function retreatLabel(r) { return 'ריטריט ' + r.place + ' ' + r.date; }
 
   /* ---------- Reveal sections on scroll ---------- */
@@ -173,6 +175,7 @@
         return '<li><a href="' + retreatHref(r.id) + '"><span class="rd-date" dir="ltr">' + esc(r.date) + '</span><span class="rd-place">' + esc(r.place) + '</span></a></li>';
       }).join('');
     }
+    setHomeEventsLd(d.retreats);
 
     if (track && d.testimonials && d.testimonials.length) {
       track.innerHTML = d.testimonials.map(function (q) {
@@ -235,6 +238,76 @@
     }
     main.innerHTML = renderRetreat(r, d.faq);
     document.title = r.title + ' ' + r.date + ' - יוגה עם יפעתי';
+    var desc = document.querySelector('meta[name=description]');
+    if (desc) desc.setAttribute('content', (r.kind + ' ב' + r.place + ' ' + r.date + ' עם יפעת. ' + lines(r.lead)[0]).replace(/\*/g, '').slice(0, 155));
+    if (document.body.hasAttribute('data-retreat-page')) {
+      var canon = document.querySelector('link[rel=canonical]');
+      if (canon) canon.href = SITE + retreatHref(r.id);
+    }
+    setEventLd(r);
+  }
+
+  /* ---------- Event structured data, so Google can show the retreat dates ---------- */
+  var SITE = 'https://ifatyoga.com/';
+
+  // "18-21.11" or "14.11" (optionally ".2027"); without a year, the next upcoming occurrence
+  function parseDates(s) {
+    var m = String(s || '').match(/(\d{1,2})(?:\s*-\s*(\d{1,2}))?\.(\d{1,2})(?:\.(\d{2,4}))?/);
+    if (!m) return null;
+    var d1 = +m[1], d2 = +(m[2] || m[1]), mo = +m[3], now = new Date();
+    var y = m[4] ? (m[4].length === 2 ? 2000 + +m[4] : +m[4]) : now.getFullYear();
+    if (!m[4] && new Date(y, mo - 1, d2) < new Date(now.getTime() - 60 * 864e5)) y++;
+    return { y: y, mo: mo, d1: d1, d2: d2 };
+  }
+  function pad(n) { return (n < 10 ? '0' : '') + n; }
+
+  function eventLd(r) {
+    var dt = parseDates(r.date);
+    if (!dt) return null;
+    var tz = dt.mo >= 4 && dt.mo <= 10 ? '+03:00' : '+02:00';
+    var day1 = dt.y + '-' + pad(dt.mo) + '-' + pad(dt.d1), day2 = dt.y + '-' + pad(dt.mo) + '-' + pad(dt.d2);
+    var times = lines(r.schedule).map(function (l) { return (l.split('|')[0] || '').trim(); }).filter(function (t) { return /^\d{1,2}:\d{2}$/.test(t); });
+    var start = times.length ? day1 + 'T' + pad(+times[0].split(':')[0]) + ':' + times[0].split(':')[1] + ':00' + tz : day1;
+    var end = times.length > 1 ? day2 + 'T' + pad(+times[times.length - 1].split(':')[0]) + ':' + times[times.length - 1].split(':')[1] + ':00' + tz : day2;
+    var url = SITE + retreatHref(r.id);
+    var img = imgSrc(r.image);
+    var prices = (String(r.price || '').match(/\d{2,6}/g) || []).map(Number);
+    var offers = !prices.length ? undefined : prices.length === 1
+      ? { '@type': 'Offer', price: prices[0], priceCurrency: 'ILS', url: url, availability: 'https://schema.org/InStock' }
+      : { '@type': 'AggregateOffer', lowPrice: Math.min.apply(null, prices), highPrice: Math.max.apply(null, prices), priceCurrency: 'ILS', url: url, availability: 'https://schema.org/InStock' };
+    return {
+      '@context': 'https://schema.org',
+      '@type': 'Event',
+      name: r.title + ' - ' + r.kind + ' ב' + r.place,
+      description: lines(r.lead).join(' ').replace(/\*/g, '').slice(0, 300),
+      startDate: start,
+      endDate: end,
+      eventStatus: 'https://schema.org/EventScheduled',
+      eventAttendanceMode: 'https://schema.org/OfflineEventAttendanceMode',
+      location: { '@type': 'Place', name: r.place, address: { '@type': 'PostalAddress', addressLocality: r.place, addressCountry: /סיני/.test(r.place) ? 'EG' : 'IL' } },
+      image: img ? [/^https:/.test(img) ? img : SITE + img] : undefined,
+      url: url,
+      offers: offers,
+      organizer: { '@type': 'Organization', name: 'יוגה עם יפעתי', url: SITE },
+      performer: { '@type': 'Person', name: 'יפעת' }
+    };
+  }
+
+  function setEventLd(r) {
+    var data = eventLd(r);
+    if (!data) return;
+    var el = document.getElementById('event-ld');
+    if (!el) { el = document.createElement('script'); el.type = 'application/ld+json'; el.id = 'event-ld'; document.head.appendChild(el); }
+    el.textContent = JSON.stringify(data);
+  }
+
+  // Home page: one event per upcoming retreat
+  function setHomeEventsLd(retreats) {
+    var list = (retreats || []).map(eventLd).filter(Boolean);
+    if (!list.length) return;
+    var el = document.getElementById('events-ld');
+    if (!el) { el = document.createElement('script'); el.type = 'application/ld+json'; el.id = 'events-ld'; document.head.appendChild(el); }
+    el.textContent = JSON.stringify(list);
   }
 
   function showMissing() {
