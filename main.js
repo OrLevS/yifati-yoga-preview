@@ -204,7 +204,13 @@
     }
   }
 
-  function renderRetreat(r, faq) {
+  // Used until a "retreat_about" row exists in the sheet's texts tab
+  var DEFAULT_RETREAT_ABOUT = 'היי, אני יפעת. היוגה נכנסה לחיים שלי לפני יותר מ־20 שנה, כבר 14 שנה שאני מלמדת, ובעשור האחרון אני לוקחת אנשים איתי לריטריטים בארץ, בסיני ובחו״ל.\nמה שאני הכי אוהבת בכל מה שאני עושה הוא *המפגש עם אנשים*. השיחות שמתפתחות, הדברים שאנשים מביאים מעצמם, והרגעים שבהם פתאום נפתח כיוון שלא חשבנו עליו.';
+
+  function renderRetreat(r, faq, d) {
+    var t = (d && d.texts) || {};
+    var aboutText = t.retreat_about || DEFAULT_RETREAT_ABOUT;
+    var aboutImg = imgSrc((d && d.images && d.images.about) || 'assets/images/about-portrait.jpg');
     var sched = lines(r.schedule).map(function (l) {
       var parts = l.split('|');
       return '<li><span dir="ltr">' + esc((parts[0] || '').trim()) + '</span><span>' + rich((parts.slice(1).join('|') || '').trim()) + '</span></li>';
@@ -222,6 +228,8 @@
       (gal.length ? '<section class="rp-block"><h2 class="rp-h">רגעים מהמקום</h2><div class="rp-gallery">' + gal.map(function (g, i) {
         return '<button type="button" class="rp-shot" data-full="' + esc(g) + '" aria-label="להגדלת תמונה ' + (i + 1) + '"><img src="' + esc(g) + '" alt="" loading="lazy"></button>';
       }).join('') + '</div></section>' : '') +
+      '<section class="rp-block rp-about">' + (aboutImg ? '<img class="rp-about-photo" src="' + esc(aboutImg) + '" alt="יפעת" loading="lazy">' : '') +
+        '<div><h2 class="rp-h">' + esc(t.retreat_about_title || 'קצת עליי') + '</h2>' + paras(aboutText) + '</div></section>' +
       (r.who ? '<section class="rp-block"><h2 class="rp-h">למי זה מתאים?</h2>' + paras(r.who) + '</section>' : '') +
       (r.price || r.includes ? '<section class="rp-block rp-price"><h2 class="rp-h">פרטים טכניים</h2>' +
         (r.price ? '<p class="rp-amount">' + esc(r.price) + ' <span>' + esc(r.priceNote) + '</span></p>' : '') +
@@ -240,7 +248,7 @@
       if (document.body.hasAttribute('data-retreat-page')) showMissing();
       return;
     }
-    main.innerHTML = renderRetreat(r, d.faq);
+    main.innerHTML = renderRetreat(r, d.faq, d);
     document.title = r.title + ' ' + r.date + ' - יוגה עם יפעתי';
     var desc = document.querySelector('meta[name=description]');
     if (desc) desc.setAttribute('content', (r.kind + ' ב' + r.place + ' ' + r.date + ' עם יפעת. ' + lines(r.lead)[0]).replace(/\*/g, '').slice(0, 155));
