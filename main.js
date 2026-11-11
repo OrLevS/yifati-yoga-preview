@@ -204,6 +204,12 @@
     }
   }
 
+  // Shown until photos are added in the sheet's "גלריה" column
+  var DEFAULT_GALLERY = {
+    sinai: ['retreat-cliff.jpg', 'class-group.jpg', 'retreat-hike.jpg', 'retreat-meal.jpg', 'retreat-hammock.jpg', 'retreat-guitar.jpg', 'laugh.jpg', 'touch-adjust.jpg'],
+    sdotYam: ['hero-beach.jpg', 'hands.jpg', 'studio-adjust.jpg', 'arms-leaves.jpg', 'mudra.jpg', 'wall-shadows.jpg', 'about-portrait.jpg', 'youtube-seated.jpg']
+  };
+
   // Used until a "retreat_about" row exists in the sheet's texts tab
   var DEFAULT_RETREAT_ABOUT = 'היי, אני יפעת. היוגה נכנסה לחיים שלי לפני יותר מ־20 שנה, כבר 14 שנה שאני מלמדת, ובעשור האחרון אני לוקחת אנשים איתי לריטריטים בארץ, בסיני ובחו״ל.\nמה שאני הכי אוהבת בכל מה שאני עושה הוא *המפגש עם אנשים*. השיחות שמתפתחות, הדברים שאנשים מביאים מעצמם, והרגעים שבהם פתאום נפתח כיוון שלא חשבנו עליו.';
 
@@ -216,6 +222,7 @@
       return '<li><span dir="ltr">' + esc((parts[0] || '').trim()) + '</span><span>' + rich((parts.slice(1).join('|') || '').trim()) + '</span></li>';
     }).join('');
     var gal = (r.gallery || []).map(imgSrc).filter(Boolean).slice(0, 8);
+    if (!gal.length) gal = (/סיני/.test(r.place) ? DEFAULT_GALLERY.sinai : DEFAULT_GALLERY.sdotYam).map(function (f) { return 'assets/images/' + f; });
     var myFaq = (faq || []).filter(function (f) { return !f.place || f.place === r.place; });
     var img = imgSrc(r.image);
     return '<section class="rp-hero">' + (img ? '<img src="' + esc(img) + '" alt="">' : '') +
